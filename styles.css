@@ -3,9 +3,16 @@
       body {
         width: 100%;
         height: 100%;
+        text-align: center;
+      }
+
+      h1 {
+        font-family: courier;
+        font-size: 40px;
       }
 
       #map {
         height: 80%;
         width: 80%;
+        min-height: 750px;
       }
