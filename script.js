@@ -1,22 +1,40 @@
+        var map, heatmap, infoWindow, service;
 
-      // This example requires the Visualization library. Include the libraries=visualization
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxGH5zZbUiYeX8IalIM8Fqmk0J1Ptodpc&libraries=visualization">
+	function initMap() {
+	var city = new google.maps.LatLng(40.2338, -111.6585);
 
-      var map, heatmap;
-
-      function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 13,
-          center: {lat: 37.775, lng: -122.434},
+          center: city,
           mapTypeId: 'satellite'
         });
+
+	infowindow = new google.maps.InfoWindow();
+	service = new google.maps.places.PlaceService(map);
+
+	var request = {
+	  location: city,
+	  radius: '1000',
+	  query: 'pizza'
+	};
+
+	service = new google.maps.places.PlacesService(map);
+	service.textSearch(request, callback);
 
         heatmap = new google.maps.visualization.HeatmapLayer({
           data: getPoints(),
           map: map
         });
       }
+
+	function callback(results, status) {
+	  if (status == google.maps.place.PlacesServiceStuats.OK) {
+	    for (var i = 0; i < results.length; i++) {
+	      var place = results[i];
+	      createMarker(results[i]);
+	    }
+	  }
+	}
 
       // Heatmap data: 500 Points
       function getPoints() {
