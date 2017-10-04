@@ -13,6 +13,15 @@
         font-size: 40px;
       }
 
+      input {
+        width: 40%;
+        font-size: 24px;
+        border-radius: 4px;
+        border-style: hidden;
+        padding: 4px;
+        box-shadow: 0px 0px 20px 7px rgb(20,20,20);
+      }
+
       .bold {
         color: red;
         font-weight: bold;
@@ -21,8 +30,8 @@
       #map {
         height: 80%;
         width: 80%;
-        min-height: 750px;
-        margin: auto;
+        min-height: 700px;
+        margin: 24px auto auto auto;
         padding: 4px;
         border-style: solid;
         border-color: ghostwhite;
