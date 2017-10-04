@@ -4,13 +4,24 @@
     <meta charset="utf-8">
     <title>Pizza is Life</title>
     <link rel="stylesheet" type="text/css" href="styles.css"></link>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   </head>
 
   <body>
+    <div id="sideMenu" class="sideMenu">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </div>
+  <div>
+    <span class="menuButton" onclick="openMenu()">MENU</span>
     <h1>Pizza is <span class="bold">LIFE</span></h1>
     <input id="pac-input" type="text" placeholder="Search Box">
 
     <div id="map"></div>
+  </div>
     <script src="script.js"></script>
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxGH5zZbUiYeX8IalIM8Fqmk0J1Ptodpc&libraries=visualization,places,geometry&callback=initMap">

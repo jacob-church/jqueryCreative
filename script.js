@@ -1,5 +1,14 @@
 var map, heatmap, infoWindow, service;
 
+function openMenu() {
+    $("#sideMenu").animate({width: "200px"},500);
+}
+
+function closeMenu() {
+    $("#sideMenu").animate({width: "0px"},500);
+}
+
+
 	function initMap() {
 	var city = new google.maps.LatLng(40.2338, -111.6585);
 
