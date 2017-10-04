@@ -39,6 +39,7 @@
 
       .menuButton:hover {
         font-weight: bold;
+        cursor: default;
       }
 
       .sideMenu {
