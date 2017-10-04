@@ -1,4 +1,4 @@
-        var map, heatmap, infoWindow, service;
+var map, heatmap, infoWindow, service;
 
 	function initMap() {
 	var city = new google.maps.LatLng(40.2338, -111.6585);
