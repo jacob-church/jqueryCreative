@@ -1,14 +1,13 @@
 var map, heatmap, infoWindow, service;
 
 function aboutUs() {
-  if ($("#about").html() == "") {
-    $("about").html(
+  if ($("#aboutUs").html() == "") {
+    $("aboutUs").html(
       "Enter your city to find out how pizzerific your location is! Are you pizza-impoverished? Or are you swimming in good pies?"
     );
   }
-  else
-  {
-    $("#about").html("");
+  else {
+    $("#aboutUs").html("");
   }
 }
 

@@ -63,7 +63,7 @@
         margin-left: 50px;
       }
 
-      .sideMenu span {
+      .sideMenu a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
         font-size: 25px;
@@ -72,7 +72,12 @@
         transition: 0.3s;
       }
 
-      .sideMenu span:hover, .offcanvas span:focus{
+      .sideMenu a .blurb {
+        color: white;
+        font-size: 18px;
+      }
+
+      .sideMenu a:hover, .offcanvas a:focus{
         color: #f1f1f1;
         cursor: default;
       }
