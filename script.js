@@ -1,8 +1,6 @@
 var map, heatmap, infoWindow, service;
 
-
 function aboutUs() {
-  console.log($("#about").html());
   if ($("#about").html() === "") {
     $("#about").html(
       "Enter your city to find out how pizzerific your location is! Are you pizza-impoverished? Or are you swimming in good pies?"
@@ -12,6 +10,17 @@ function aboutUs() {
     $("#about").html("");
   }
 }
+
+function changeMap() {
+  var input = document.getElementById('pac-input');
+}
+
+function callback(results, status) {
+  if (status == google.maps.place.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      var place = results[i];
+      createMarker(results[i]);
+    }
 
 function openMenu() {
     $("#sideMenu").animate({width: "200px"},500);
@@ -86,7 +95,7 @@ var city = new google.maps.LatLng(40.2338, -111.6585);
 	service.textSearch(request, callback);
 
         heatmap = new google.maps.visualization.HeatmapLayer({
-          data: getPoints(),
+          data: null,
           map: map
         });
       }
