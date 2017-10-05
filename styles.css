@@ -14,7 +14,8 @@
       }
 
       input {
-        width: 40%;
+        text-align: center;
+        width: 20%;
         font-size: 24px;
         border-radius: 4px;
         border-style: hidden;
@@ -25,6 +26,60 @@
       .bold {
         color: red;
         font-weight: bold;
+      }
+
+      .menuButton {
+        color: white;
+        font-size: 20px;
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        font-family: courier;
+      }
+
+      .menuButton:hover {
+        font-weight: bold;
+        cursor: default;
+      }
+
+      .sideMenu {
+        height: 100%; /* 100% Full-height */
+        width: 0; /* 0 width - change this with JavaScript */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Stay on top */
+        top: 0;
+        left: 0;
+        background-color: #111; /* Black*/
+        overflow-x: hidden;
+        padding-top: 60px;
+        text-align: left;
+      }
+
+      .sideMenu .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+
+      .sideMenu a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sideMenu a .blurb {
+        color: white;
+        font-size: 18px;
+      }
+
+      .sideMenu a:hover, .offcanvas a:focus{
+        color: #f1f1f1;
+        cursor: default;
       }
 
       #map {
