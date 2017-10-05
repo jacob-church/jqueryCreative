@@ -1,9 +1,9 @@
 var map, heatmap, infoWindow, service;
 
 function aboutUs() {
-  console.log($("#aboutUs").html());
+  console.log($("#about").html());
   if ($("#about").html() === "") {
-    $("about").html(
+    $("#about").html(
       "Enter your city to find out how pizzerific your location is! Are you pizza-impoverished? Or are you swimming in good pies?"
     ).hide().fadeIn("slow");
   }
@@ -21,30 +21,28 @@ function closeMenu() {
 }
 
 
-	function initMap() {
-	var city = new google.maps.LatLng(40.2338, -111.6585);
+function initMap() {
+var city = new google.maps.LatLng(40.2338, -111.6585);
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: city,
+        mapTypeId: 'satellite'
+      });
 
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 13,
-          center: city,
-          mapTypeId: 'satellite'
-        });
+      var input = document.getElementById('pac-input');
+      var searchBox = new google.maps.places.SearchBox(input);
 
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+      map.addListener('bounds_changed', function() {
+        searchBox.setBounds(map.getBounds());
+      });
 
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
-        });
+      var markers = [];
+      searchBox.addListener('places_changed', function() {
+        var places = searchBox.getPlaces();
 
-        var markers = [];
-        searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
-
-          if (places.length == 0) {
+        if (places.length == 0) {
             return;
-          }
+        }
 
           markers.forEach(function(marker) {
             marker.setMap(null);
@@ -64,13 +62,6 @@ function closeMenu() {
               anchor: new google.maps.Point(17, 34),
               scaledSize: new google.maps.Size(25, 25)
             };
-
-            markers.push(new google.maps.Marker({
-              map: map,
-              icon: icon,
-              title: place.name,
-              position: place.geometry.location
-            }));
 
             if (place.geometry.viewport) {
               bounds.union(place.geometry.viewport);
@@ -107,10 +98,3 @@ function closeMenu() {
 	    }
 	  }
 	}
-
-      // Heatmap data: 500 Points
-      function getPoints() {
-        return [
-
-        ];
-      }
