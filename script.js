@@ -27,6 +27,10 @@ function initMap() {
   });
 }
 
+function changeMap() {
+  var input = document.getElementById('pac-input');
+}
+
 function callback(results, status) {
   if (status == google.maps.place.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
