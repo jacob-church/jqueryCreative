@@ -32,8 +32,8 @@
         color: white;
         font-size: 20px;
         position: fixed;
-        top: 8px;
-        left: 8px;
+        top: 12px;
+        left: 12px;
         font-family: courier;
       }
 
@@ -71,7 +71,7 @@
         transition: 0.3s
       }
 
-      .sidenav a:hover, .offcanvas a:focus{
+      .sideMenu span:hover, .offcanvas span:focus{
         color: #f1f1f1;
       }
 
