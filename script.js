@@ -11,35 +11,33 @@ function aboutUs() {
   }
 }
 
+$("#about").click(aboutUs);
+
 function changeMap() {
   var input = document.getElementById('pac-input');
 }
 
-function callback(results, status) {
-  if (status == google.maps.place.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
-      var place = results[i];
-      createMarker(results[i]);
-    }
 
+// open side menu
 function openMenu() {
     $("#sideMenu").animate({width: "200px"},500);
-}
+}//
 
+// close side menu
 function closeMenu() {
     $("#sideMenu").animate({width: "0px"},500);
-}
+}//
 
 
 function initMap() {
 var city = new google.maps.LatLng(40.2338, -111.6585);
-      map = new google.maps.Map(document.getElementById('map'), {
+      map = new google.maps.Map($('#map'), {
         zoom: 13,
         center: city,
         mapTypeId: 'satellite'
       });
 
-      var input = document.getElementById('pac-input');
+      var input = $('#pac-input');
       var searchBox = new google.maps.places.SearchBox(input);
 
       map.addListener('bounds_changed', function() {
@@ -94,17 +92,8 @@ var city = new google.maps.LatLng(40.2338, -111.6585);
 	service = new google.maps.places.PlacesService(map);
 	service.textSearch(request, callback);
 
-        heatmap = new google.maps.visualization.HeatmapLayer({
-          data: null,
-          map: map
-        });
-      }
-
-	function callback(results, status) {
-	  if (status == google.maps.place.PlacesServiceStuats.OK) {
-	    for (var i = 0; i < results.length; i++) {
-	      var place = results[i];
-	      createMarker(results[i]);
-	    }
-	  }
-	}
+  heatmap = new google.maps.visualization.HeatmapLayer({
+    data: null,
+    map: map
+  });
+}
