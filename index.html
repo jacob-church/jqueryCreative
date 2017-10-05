@@ -6,6 +6,9 @@
     <link rel="stylesheet" type="text/css" href="styles.css"></link>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="script.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxGH5zZbUiYeX8IalIM8Fqmk0J1Ptodpc&libraries=visualization,places,geometry&callback=initMap">
+    </script>
   </head>
 
   <body>
@@ -20,13 +23,9 @@
   <div>
     <span class="menuButton" onclick="openMenu()">MENU</span>
     <h1>Pizza is <span class="bold">LIFE</span></h1>
-    <input id="pac-input" type="text" placeholder="Enter you City">
+    <input id="pac-input" type="text" placeholder="Enter your City">
     <input id="searchButton" type="submit" value="Submit">
     <div id="map"></div>
   </div>
-
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxGH5zZbUiYeX8IalIM8Fqmk0J1Ptodpc&libraries=visualization,places,geometry&callback=initMap">
-    </script>
   </body>
 </html>
