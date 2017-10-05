@@ -1,5 +1,6 @@
 var map, heatmap, infoWindow, service;
 
+
 function aboutUs() {
   console.log($("#about").html());
   if ($("#about").html() === "") {
