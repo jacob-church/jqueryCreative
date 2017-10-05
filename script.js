@@ -1,5 +1,7 @@
 var map, heatmap, infoWindow, service;
 
+$('#about').html('');
+
 function aboutUs() {
   if ($("#about").html() === "") {
     $("#about").html(
@@ -11,19 +13,40 @@ function aboutUs() {
   }
 }
 
-function openMenu() {
-  $("#sideMenu").animate({ width: "200px" }, 500);
+$("#about").click(aboutUs);
+
+function changeMap() {
+  var input = document.getElementById('pac-input');
 }
 
+
+// open side menu
+function openMenu() {
+  $("#sideMenu").animate({ width: "200px" }, 500);
+}//
+
+// close side menu
 function closeMenu() {
   $("#sideMenu").animate({ width: "0px" }, 500);
-}
+}//
 
 $("#submitButton").click(function (e) {
   var input = $("#pac-input").val();
   e.preventDefault();
   var searchBox = new google.maps.places.SearchBox(input);
   console.log(input);
+});
+
+function initMap() {
+  var city = new google.maps.LatLng(40.2338, -111.6585);
+  map = new google.maps.Map($('#map'), {
+    zoom: 13,
+    center: city,
+    mapTypeId: 'satellite'
+  });
+
+  var input = $('#pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
 
   map.addListener('bounds_changed', function () {
     searchBox.setBounds(map.getBounds());
@@ -42,52 +65,11 @@ $("#submitButton").click(function (e) {
     });
     markers = [];
 
-    var bounds = new google.maps.LatLngBounds();
-    places.forEach(function (place) {
-      if (!place.geometry) {
-        console.log("Returned place contains no geometry");
-        return;
-      }
-      var icon = {
-        url: place.icon,
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(25, 25)
-      };
-
-      if (place.geometry.viewport) {
-        bounds.union(place.geometry.viewport);
-      } else {
-        bounds.extend(place.geometry.location);
-      }
-    });
-    map.fitBounds(bounds);
+    if (place.geometry.viewport) {
+      bounds.union(place.geometry.viewport);
+    } else {
+      bounds.extend(place.geometry.location);
+    }
   });
-
-  var request = {
-    location: city,
-    radius: '1000',
-    query: 'pizza'
-  };
-
-  service = new google.maps.places.PlacesService(map);
-  service.textSearch(request, callback);
-
-  infowindow = new google.maps.InfoWindow();
-  service = new google.maps.places.PlaceService(map);
-
-  heatmap = new google.maps.visualization.HeatmapLayer({
-    data: null,
-    map: map
-  });
-})
-
-function initMap() {
-  var city = new google.maps.LatLng(40.2338, -111.6585);
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 13,
-    center: city,
-    mapTypeId: 'satellite'
-  });
-}
+  map.fitBounds(bounds);
+};
