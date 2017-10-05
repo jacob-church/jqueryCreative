@@ -1,4 +1,5 @@
-var map, heatmap, infoWindow, service;
+var map, heatmap;
+const apiKey = "AIzaSyAxGH5zZbUiYeX8IalIM8Fqmk0J1Ptodpc";
 
 $('#about').html('');
 
@@ -58,7 +59,7 @@ function applyHeatMap(lat,lon) {
   pizzaUrl += "location" + lat + "," + lon;
   pizzaUrl += "&radius=5000&types=food&name=pizza"
   pizzaUrl += "&key=" + apiKey;
-  $.ajax(
+  $.ajax({
     url: pizzaUrl,
     type: 'GET',
     dataType: 'json',
@@ -72,5 +73,5 @@ function applyHeatMap(lat,lon) {
       }
       heatMap.setData(pizzaPlaces);
     }
-  );
+  });
 }
