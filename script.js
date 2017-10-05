@@ -3,7 +3,7 @@ var map, heatmap, infoWindow, service;
 function aboutUs() {
   if ($("#about").val() == "") {
     $("about").html(
-      "Enter your city to find out how pizzerific your location is! Are you pizza-impoverished? Or are you swimming in good pies?";
+      "Enter your city to find out how pizzerific your location is! Are you pizza-impoverished? Or are you swimming in good pies?"
     );
   }
   else
