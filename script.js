@@ -79,21 +79,4 @@ var city = new google.maps.LatLng(40.2338, -111.6585);
           });
           map.fitBounds(bounds);
         });
-
-	infowindow = new google.maps.InfoWindow();
-	service = new google.maps.places.PlaceService(map);
-
-	var request = {
-	  location: city,
-	  radius: '1000',
-	  query: 'pizza'
-	};
-
-	service = new google.maps.places.PlacesService(map);
-	service.textSearch(request, callback);
-
-  heatmap = new google.maps.visualization.HeatmapLayer({
-    data: null,
-    map: map
-  });
 }
