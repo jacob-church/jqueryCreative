@@ -2,13 +2,13 @@ var map, heatmap, infoWindow, service;
 
 function aboutUs() {
   console.log($("#aboutUs").html());
-  if ($("#aboutUs").html() === "") {
-    $("aboutUs").html(
+  if ($("#about").html() === "") {
+    $("about").html(
       "Enter your city to find out how pizzerific your location is! Are you pizza-impoverished? Or are you swimming in good pies?"
     ).hide().fadeIn("slow");
   }
   else {
-    $("#aboutUs").html("");
+    $("#about").html("");
   }
 }
 
