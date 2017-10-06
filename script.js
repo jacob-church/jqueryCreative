@@ -52,14 +52,8 @@ $(document).ready(function () {
       url: myurl,
       dataType: "json",
       success: function (parsed_json) {
-        var res = parsed_json['results'];
-        var geo = parsed_json['results']['geometry'];
-        console.log(res);
-        console.log(geo);
         var lat = parsed_json.results[0].geometry.location.lat;
         var long = parsed_json.results[0].geometry.location.lng;
-        console.log(lat);
-        console.log(long);
         newCity = new google.maps.LatLng(lat, long);
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 13,
@@ -81,7 +75,7 @@ $(document).ready(function () {
     $.ajax({
       url: pizzaUrl,
       type: 'GET',
-      dataType: 'json',
+      dataType: 'jsonp',
       success: function (data) {
         console.log(data);
         data = data.results;
