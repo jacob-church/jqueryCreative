@@ -38,7 +38,7 @@ function initMap() {
   heatmap = new google.maps.visualization.HeatmapLayer({
     data: [],
     map: map,
-    radius: 250
+    radius: 200
   });
 }
 
@@ -46,7 +46,7 @@ function applyHeatMap(lat, lon) {
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
     location: new google.maps.LatLng(lat,lon),
-    radius: 50000,
+    radius: 10000,
     type: 'restaurant',
     name: 'pizza'
   }, function(results, status) {
