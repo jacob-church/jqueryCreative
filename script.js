@@ -88,6 +88,6 @@ $(document).ready( function () {
         });
         applyHeatMap(lat, long);
       }
-    })
-  })
+    });
+  });
 });
