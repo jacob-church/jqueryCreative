@@ -14,8 +14,6 @@ function aboutUs() {
   }
 }
 
-$("#about").click(aboutUs);
-
 function changeMap() {
   var input = document.getElementById('pac-input');
 }
@@ -41,6 +39,7 @@ $("#searchButton").click(function (e) {
   myurl += "&key=AIzaSyAxGH5zZbUiYeX8IalIM8Fqmk0J1Ptodpc"
   $.ajax({
     url: myurl,
+    type: 'POST',
     dataType: "json",
     success: function (parsed_json) {
       var lat = parsed_json.location.lat;
@@ -59,26 +58,17 @@ $("#searchButton").click(function (e) {
 });
 
 function initMap() {
-<<<<<<< HEAD
   var city = new google.maps.LatLng(40.2338, -111.6585);
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 13,
-    center: city,
-    mapTypeId: 'satellite'
-  });
-};
-=======
-var city = new google.maps.LatLng(40.2338, -111.6585);
-      map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 13,
-        center: city,
-        mapTypeId: 'satellite'
-      });
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 13,
+      center: city,
+      mapTypeId: 'satellite'
+    });
 
-      heatmap = new google.maps.visualization.HeatmapLayer({
-          data: [],
-          map: map
-      });
+    heatmap = new google.maps.visualization.HeatmapLayer({
+        data: [],
+        map: map
+    });
 }
 
 function applyHeatMap(lat,lon) {
@@ -104,4 +94,3 @@ function applyHeatMap(lat,lon) {
     }
   });
 }
->>>>>>> 5c87f58475ece5225820da845f9e63d5191015a9
