@@ -30,46 +30,38 @@ function closeMenu() {
   $("#sideMenu").animate({ width: "0px" }, 500);
 }//
 
-$("#submitButton").click(function (e) {
-  var input = $("#pac-input").val();
+$("#searchButton").click(function (e) {
   e.preventDefault();
-  var searchBox = new google.maps.places.SearchBox(input);
+  var input = $("#cityInput").val();
   console.log(input);
+  var newCity;
+  var myurl = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+  myurl += input;
+  myurl += "&key=AIzaSyAxGH5zZbUiYeX8IalIM8Fqmk0J1Ptodpc"
+  $.ajax({
+    url: myurl,
+    dataType: "json",
+    success: function (parsed_json) {
+      var lat = parsed_json.location.lat;
+      var long = parsed_json.locaton.lng;
+      console.log(lat);
+      console.log(long);
+      newCity = new google.maps.LatLng(lat, long);
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: newCity,
+        mapTypeId: 'satellite'
+      });
+      applyHeatMap(lat, long);
+    }
+  })
 });
 
 function initMap() {
   var city = new google.maps.LatLng(40.2338, -111.6585);
-  map = new google.maps.Map($('#map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
     center: city,
     mapTypeId: 'satellite'
   });
-
-  var input = $('#pac-input');
-  var searchBox = new google.maps.places.SearchBox(input);
-
-  map.addListener('bounds_changed', function () {
-    searchBox.setBounds(map.getBounds());
-  });
-
-  var markers = [];
-  searchBox.addListener('places_changed', function () {
-    var places = searchBox.getPlaces();
-
-    if (places.length == 0) {
-      return;
-    }
-
-    markers.forEach(function (marker) {
-      marker.setMap(null);
-    });
-    markers = [];
-
-    if (place.geometry.viewport) {
-      bounds.union(place.geometry.viewport);
-    } else {
-      bounds.extend(place.geometry.location);
-    }
-  });
-  map.fitBounds(bounds);
 };
