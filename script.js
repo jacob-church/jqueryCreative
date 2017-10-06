@@ -41,7 +41,7 @@ function initMap() {
   });
 }
 
-$(document).ready(function () {
+$(document).ready( function () {
   $("#about").html("");
   $("#about").click(aboutUs);
   $("#searchButton").click(function (e) {
@@ -68,7 +68,8 @@ $(document).ready(function () {
         applyHeatMap(lat, long);
       }
     })
-  });
+  })
+});
 
   function applyHeatMap(lat, lon) {
     console.log(pizzaUrl);
@@ -90,4 +91,4 @@ $(document).ready(function () {
       }
     }
   }
-});
+};
