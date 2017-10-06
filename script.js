@@ -42,7 +42,6 @@ function initMap() {
 }
 
 function applyHeatMap(lat, lon) {
-  console.log(pizzaUrl);
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
     location: new google.maps.LatLng(lat,lon),
