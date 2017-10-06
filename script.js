@@ -53,7 +53,7 @@ function applyHeatMap(lat, lon) {
       console.log(results);
       var pizzaPlaces = [];
       for (var i = 0; i < results.length; i++) {
-        var place = data[i].geometry.location;
+        var place = results[i].geometry.location;
         pizzaPlaces.push(new google.maps.LatLng(place.lat(),place.lng()));
       }
       heatMap.setData(pizzaPlaces);
