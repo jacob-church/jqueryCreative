@@ -18,7 +18,6 @@ function changeMap() {
   var input = document.getElementById('pac-input');
 }
 
-
 // open side menu
 function openMenu() {
   $("#sideMenu").animate({ width: "200px" }, 500);
@@ -39,7 +38,7 @@ $("#searchButton").click(function (e) {
   myurl += "&key=AIzaSyAxGH5zZbUiYeX8IalIM8Fqmk0J1Ptodpc"
   $.ajax({
     url: myurl,
-    type: 'POST',
+    type: 'GET',
     dataType: "json",
     success: function (parsed_json) {
       var lat = parsed_json.location.lat;
@@ -53,6 +52,10 @@ $("#searchButton").click(function (e) {
         mapTypeId: 'satellite'
       });
       applyHeatMap(lat, long);
+    },
+    error: function (xhr, textStatus, errorThrown) {
+      console.log('Error in Operation');
+      console.log(errorThrown);
     }
   })
 });
@@ -72,16 +75,14 @@ function initMap() {
 }
 
 function applyHeatMap(lat,lon) {
-  // lat:
-  // lon:
   var pizzaUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
-  pizzaUrl += "location" + lat + "," + lon;
+  pizzaUrl += "location=" + lat + "," + lon;
   pizzaUrl += "&radius=5000&types=food&name=pizza"
   pizzaUrl += "&key=" + apiKey;
   $.ajax({
     url: pizzaUrl,
     type: 'GET',
-    dataType: 'json',
+    dataType: 'jsonp',
     success: function(data) {
       console.log(data);
       data = data.results;
