@@ -41,6 +41,27 @@ function initMap() {
   });
 }
 
+function applyHeatMap(lat, lon) {
+  console.log(pizzaUrl);
+  var service = new google.maps.places.PlacesService(map);
+  service.nearbySearch({
+    location: new google.maps.LatLng(lat,lon),
+    radius: 50000,
+    type: 'restaurant',
+    name: 'pizza'
+  }, function(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      console.log(results);
+      var pizzaPlaces = [];
+      for (var i = 0; i < results.length; i++) {
+        var place = data[i].geometry.location;
+        pizzaPlaces.push(new google.maps.LatLng(place.lat(),place.lng()));
+      }
+      heatMap.setData(pizzaPlaces);
+    }
+  }
+};
+
 $(document).ready( function () {
   $("#about").html("");
   $("#about").click(aboutUs);
@@ -70,24 +91,3 @@ $(document).ready( function () {
     })
   })
 });
-
-  function applyHeatMap(lat, lon) {
-    console.log(pizzaUrl);
-    var service = new google.maps.places.PlacesService(map);
-    service.nearbySearch({
-      location: new google.maps.LatLng(lat,lon),
-      radius: 50000,
-      type: 'restaurant',
-      name: 'pizza'
-    }, function(results, status) {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        console.log(results);
-        var pizzaPlaces = [];
-        for (var i = 0; i < results.length; i++) {
-          var place = data[i].geometry.location;
-          pizzaPlaces.push(new google.maps.LatLng(place.lat(),place.lng()));
-        }
-        heatMap.setData(pizzaPlaces);
-      }
-    }
-  };
