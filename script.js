@@ -59,13 +59,13 @@ function applyHeatMap(lat, lon) {
       }
       heatMap.setData(pizzaPlaces);
     }
-  }
+  });
 };
 
 $(document).ready( function () {
   $("#about").html("");
   $("#about").click(aboutUs);
-  $("#searchButton").click(function (e) {
+  $("#searchButton").click( function (e) {
     e.preventDefault();
     var input = $("#cityInput").val();
     console.log(input);
