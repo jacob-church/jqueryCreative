@@ -67,6 +67,9 @@ $(document).ready( function () {
   $("#searchButton").click( function (e) {
     e.preventDefault();
     var input = $("#cityInput").val();
+    if (input === "") {
+      input = "Provo";
+    }
     console.log(input);
     var newCity;
     var myurl = "https://maps.googleapis.com/maps/api/geocode/json?address=";
