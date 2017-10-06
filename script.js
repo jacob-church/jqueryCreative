@@ -56,7 +56,9 @@ function applyHeatMap(lat, lon) {
         var place = results[i].geometry.location;
         pizzaPlaces.push(new google.maps.LatLng(place.lat(),place.lng()));
       }
+      console.log(pizzaPlaces);
       heatmap.setData(new google.maps.MVCArray(pizzaPlaces));
+      console.log(heatmap);
       heatmap.setMap(map);
     }
   });
