@@ -1,7 +1,6 @@
 var map, heatmap;
 const apiKey = "AIzaSyAxGH5zZbUiYeX8IalIM8Fqmk0J1Ptodpc";
 
-$('#about').html('');
 
 function aboutUs() {
   if ($("#about").html() === "") {
@@ -28,70 +27,67 @@ function closeMenu() {
   $("#sideMenu").animate({ width: "0px" }, 500);
 }//
 
-$("#searchButton").click(function (e) {
-  e.preventDefault();
-  var input = $("#cityInput").val();
-  console.log(input);
-  var newCity;
-  var myurl = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-  myurl += input;
-  myurl += "&key=AIzaSyAxGH5zZbUiYeX8IalIM8Fqmk0J1Ptodpc"
-  $.ajax({
-    url: myurl,
-    type: 'GET',
-    dataType: "json",
-    success: function (parsed_json) {
-      var lat = parsed_json.location.lat;
-      var long = parsed_json.locaton.lng;
-      console.log(lat);
-      console.log(long);
-      newCity = new google.maps.LatLng(lat, long);
-      map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 13,
-        center: newCity,
-        mapTypeId: 'satellite'
-      });
-      applyHeatMap(lat, long);
-    },
-    error: function (xhr, textStatus, errorThrown) {
-      console.log('Error in Operation');
-      console.log(errorThrown);
-    }
-  })
-});
-
 function initMap() {
   var city = new google.maps.LatLng(40.2338, -111.6585);
-    map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 13,
-      center: city,
-      mapTypeId: 'satellite'
-    });
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 13,
+    center: city,
+    mapTypeId: 'satellite'
+  });
 
-    heatmap = new google.maps.visualization.HeatmapLayer({
-        data: [],
-        map: map
-    });
-}
-
-function applyHeatMap(lat,lon) {
-  var pizzaUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?";
-  pizzaUrl += "location=" + lat + "," + lon;
-  pizzaUrl += "&radius=5000&types=food&name=pizza"
-  pizzaUrl += "&key=" + apiKey;
-  $.ajax({
-    url: pizzaUrl,
-    type: 'GET',
-    dataType: 'jsonp',
-    success: function(data) {
-      console.log(data);
-      data = data.results;
-      var pizzaPlaces = [];
-      for (var i = 0; i < data.length; i++) {
-        var place = data[i].geometry.location;
-        pizzaPlaces.push(new google.maps.LatLng(place.lat,place.lng));
-      }
-      heatMap.setData(pizzaPlaces);
-    }
+  heatmap = new google.maps.visualization.HeatmapLayer({
+    data: [],
+    map: map
   });
 }
+
+$(document).ready(function () {
+  $("#about").html("");
+  $("#about").click(aboutUs);
+  $("#searchButton").click(function (e) {
+    e.preventDefault();
+    var input = $("#cityInput").val();
+    console.log(input);
+    var newCity;
+    var myurl = "https://maps.googleapis.com/maps/api/geocode/json?address=";
+    myurl += input;
+    myurl += "&key=" + apiKey;
+    $.ajax({
+      url: myurl,
+      dataType: "json",
+      success: function (parsed_json) {
+        console.log(parsed_json);
+        var lat = parsed_json.results[0].geometry.location.lat;
+        var long = parsed_json.results[0].geometry.location.lng;
+        newCity = new google.maps.LatLng(lat, long);
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: newCity,
+          mapTypeId: 'satellite'
+        });
+        applyHeatMap(lat, long);
+      }
+    })
+  });
+
+  function applyHeatMap(lat, lon) {
+    console.log(pizzaUrl);
+    var service = new google.maps.places.PlacesService(map);
+    service.nearbySearch({
+      location: new google.maps.LatLng(lat,lon),
+      radius: 50000,
+      type: 'restaurant',
+      name: 'pizza'
+    }, function(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        console.log(results);
+        var pizzaPlaces = [];
+        for (var i = 0; i < results.length; i++) {
+          var place = data[i].geometry.location;
+          pizzaPlaces.push(new google.maps.LatLng(place.lat(),place.lng()));
+        }
+        heatMap.setData(pizzaPlaces);
+      }
+    }
+  }
+});
