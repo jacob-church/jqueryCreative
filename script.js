@@ -52,8 +52,12 @@ $(document).ready(function () {
       url: myurl,
       dataType: "json",
       success: function (parsed_json) {
-        var lat = parsed_json['results']['geometry'][1][0];
-        var long = parsed_json['results']['geometry'][1][1];
+        var res = parsed_json['results'];
+        var geo = parsed_json['results']['geometry'];
+        console.log(res);
+        console.log(geo);
+        var lat = parsed_json.results[0].geometry.location.lat;
+        var long = parsed_json.results[0].geometry.location.lng;
         console.log(lat);
         console.log(long);
         newCity = new google.maps.LatLng(lat, long);
